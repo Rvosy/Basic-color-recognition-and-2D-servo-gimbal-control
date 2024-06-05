@@ -17,5 +17,6 @@ void MENU_Information(void);
 void MENU_RunSevroMenu(void);
 void MENU_RunSevroDebugMenu(void);
 void MENU_RunSevroDrawMenu(void);
+void RunNECTest(void);
 
 #endif // __User_MENU_H

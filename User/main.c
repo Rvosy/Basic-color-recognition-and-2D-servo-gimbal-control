@@ -5,11 +5,14 @@
 #include "Key.h"
 #include "Encoder.h"
 #include "User_Menu.h"
+#include "Remote.h"
 
 int main(){
 	OLED_Init();
 	Key_Init();
 	Encoder_Init();
+	Remote_Init();
+
 	while (1){
          MENU_RunMainMenu();//运行主菜单
 	}
