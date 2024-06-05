@@ -85,9 +85,52 @@ u8 Remote_Scan(void)
     }
     return res;
 }
- 
+
+uint8_t Remote_GetEvent_Up(void){
+    u8 key = Remote_Scan(); // 初次扫描按键
+    if (key == 0x18) {      // 检测按键是否为0x18
+        while (key == 0x18) {
+            key = Remote_Scan(); // 持续扫描按键直到不再是0x18
+        }
+        return 1;           // 按键释放后返回1
+    }
+    return 0;               // 按键不是0x18时返回0
+}
 
 
+uint8_t Remote_GetEvent_Down(void){
+    u8 key = Remote_Scan(); // 初次扫描按键
+    if (key == 0x52) {      // 检测按键是否为0x52
+        while (key == 0x52) {
+            key = Remote_Scan(); // 持续扫描按键直到不再是0x52
+        }
+        return 1;           // 按键释放后返回1
+    }
+    return 0;               // 按键不是0x52时返回0
+}
+
+uint8_t Remote_GetEvent_Enter(void){
+    u8 key = Remote_Scan(); // 初次扫描按键
+    if (key == 0x1C) {      // 检测按键是否为0x52
+        while (key == 0x1C) {
+            key = Remote_Scan(); // 持续扫描按键直到不再是0x52
+        }
+        return 1;           // 按键释放后返回1
+    }
+    return 0;               // 按键不是0x52时返回0
+}
+
+uint8_t Remote_GetEvent_Back(void){
+    u8 key = Remote_Scan(); // 初次扫描按键
+    if (key == 0x0D) {      // 检测按键是否为0x52
+        while (key == 0x0D) {
+            key = Remote_Scan(); // 持续扫描按键直到不再是0x52
+        }
+        return 1;           // 按键释放后返回1
+    }
+    return 0;               // 按键不是0x52时返回0
+
+}
 //定时器4中断服务程序
 void TIM2_IRQHandler(void)
 {

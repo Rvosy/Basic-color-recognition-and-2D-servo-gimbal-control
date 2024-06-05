@@ -12,6 +12,9 @@
 #define REMOTE_ID 0x00
 #define RDATA GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)
 void Remote_Init(void);
-u8 Remote_Scan(void);
-
+uint8_t Remote_Scan(void);
+uint8_t Remote_GetEvent_Up(void);
+uint8_t Remote_GetEvent_Down(void);
+uint8_t Remote_GetEvent_Enter(void);
+uint8_t Remote_GetEvent_Back(void);
 #endif // __REMOTE_H

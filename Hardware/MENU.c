@@ -74,6 +74,7 @@
 /** Port 移植接口 * **************************************************************/
 /* 依赖头文件 */
 #include "Key.h"
+#include "Remote.h"
 #include "Encoder.h"
 #include "OLED.h"
 
@@ -153,21 +154,21 @@ int menu_command_callback(enum _menu_command command, ...)
     /* Input */
     case GET_EVENT_ENTER: // 参数: 无; 返回: 布尔;
     {
-        retval = Key_GetEvent_Enter();// || Key_GetEvent_Right(); // 这代表两个按键都可以触发这个事件
+        retval = Key_GetEvent_Enter() || Remote_GetEvent_Enter();// || Key_GetEvent_Right(); // 这代表两个按键都可以触发这个事件
     }
     break;
 
     case GET_EVENT_BACK: // 参数: 无; 返回: 布尔;
     {
-        retval = Key_GetEvent_Back();
+        retval = Key_GetEvent_Back() || Remote_GetEvent_Back();
     }
     break;
 
     case GET_EVENT_WHEEL: // 参数: 无; 返回: int16_t 滚动量;
     {
-        if (Key_GetEvent_Up())
+        if (Key_GetEvent_Up() || Remote_GetEvent_Up())
             retval = 1;
-        else if (Key_GetEvent_Down())
+        else if (Key_GetEvent_Down() || Remote_GetEvent_Down())
             retval = -1;
         else
             retval = Encoder_Get(); // 这代表上下按键及编码器旋钮都可以触发这个事件, 注意返回值是有符号的

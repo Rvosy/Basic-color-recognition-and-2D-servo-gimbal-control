@@ -8,7 +8,7 @@ void MENU_RunMainMenu(void){
                                                    {"开始识别", RunMain},
                                                    {"阈值设置", NULL},
                                                    {"测试", MENU_RunTestMenu},
-                                                   {"test", MENU_Information},
+                                                   {"关于", MENU_Information},
                                                    {".."}};
 
     static MENU_HandleTypeDef MENU = {.OptionList = MENU_OptionList};
@@ -78,7 +78,7 @@ void RunNECTest(void){
         u8 key = Remote_Scan();
         OLED_ShowHexNum(45, 20, key, 2, OLED_8X16);
         menu_command_callback(BUFFER_DISPLAY);
-        if (menu_command_callback(GET_EVENT_ENTER) || menu_command_callback(GET_EVENT_BACK)) return;
+        if (menu_command_callback(GET_EVENT_BACK)) return;
     }
 }
 
